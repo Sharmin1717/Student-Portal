@@ -31,7 +31,6 @@ if (!$user || !$user['verified']) {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Student Portal - Home</title>
 
-<!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
 <style>
@@ -86,7 +85,7 @@ body.dark-mode .text-muted {
 </head>
 <body>
 
-<!-- Navbar -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
   <div class="container">
     <a class="navbar-brand" href="#">Student Portal</a>
@@ -126,18 +125,22 @@ body.dark-mode .text-muted {
   </div>
 </nav>
 
-<!-- Main Content -->
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-md-10 text-center">
       <img src="https://dps.mksu.ac.ke/wp-content/uploads/2019/04/portal.jpg" alt="Portal Logo" class="profile-img mb-3" />
       <h2 class="welcome-text mb-4">Welcome back, <?php echo htmlspecialchars($user['name']); ?>!</h2>
-      <p class="mb-4 lead text-muted">
-        <strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?><br />
-        <strong>Course:</strong> <?php echo htmlspecialchars($user['course'] ?? 'Not Provided'); ?><br />
-        <strong>Semester:</strong> <?php echo htmlspecialchars($user['semester'] ?? 'Not Provided'); ?><br />
-        <strong>Phone:</strong> <?php echo htmlspecialchars($user['phone'] ?? 'Not Provided'); ?>
-      </p>
+     <p class="mb-4 lead text-muted">
+  <strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?><br />
+  <?php if (!empty($user['course'])): ?>
+    <strong>Course:</strong> <?php echo htmlspecialchars($user['course']); ?><br />
+  <?php endif; ?>
+  <?php if (!empty($user['semester'])): ?>
+    <strong>Semester:</strong> <?php echo htmlspecialchars($user['semester']); ?><br />
+  <?php endif; ?>
+  <strong>Phone:</strong> <?php echo htmlspecialchars($user['phone'] ?? 'Not Provided'); ?>
+</p>
+
 
       <div class="row g-4 mt-4">
 
@@ -196,12 +199,10 @@ body.dark-mode .text-muted {
   </div>
 </div>
 
-<!-- Footer -->
 <footer class="bg-light text-center py-3 mt-auto shadow-sm">
   <small class="text-muted">&copy; <?php echo date("Y"); ?> Student Portal. All rights reserved.</small>
 </footer>
 
-<!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   const toggleBtn = document.getElementById('theme-toggle');
