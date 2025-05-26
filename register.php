@@ -3,12 +3,11 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 
-require 'db.php';        // DB connection
-require 'functions.php'; // sendVerificationEmail() function
+require 'db.php';        
+require 'functions.php'; 
 
 $message = '';
 
-// Check DB connection
 if (!$conn) {
     die('Database connection not established.');
 }
@@ -19,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Basic validation
     if (empty($name) || empty($email) || empty($password) || empty($confirm_password)) {
         $message = "All fields are required.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
