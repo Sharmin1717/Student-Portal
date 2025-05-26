@@ -6,10 +6,9 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Fetch courses for dropdown
+
 $courses_result = $conn->query("SELECT id, course_code, course_name FROM courses ORDER BY course_code");
 
-// Handle POST for create/update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
     $course_id = $_POST['course_id'] ?? '';
@@ -32,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-// Handle Delete
+
 if (isset($_GET['delete'])) {
     $del_id = intval($_GET['delete']);
     $stmt = $conn->prepare("DELETE FROM assignments WHERE id=?");
@@ -43,7 +42,7 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
-// Get all assignments with course info
+
 $sql = "SELECT a.*, c.course_code, c.course_name FROM assignments a JOIN courses c ON a.course_id = c.id ORDER BY a.due_date DESC";
 $result = $conn->query($sql);
 
@@ -61,7 +60,6 @@ $result = $conn->query($sql);
     <h2>Assignments</h2>
     <hr>
 
-    <!-- Add/Edit Form -->
     <div class="card mb-4 p-3">
         <h5>Add / Edit Assignment</h5>
         <form method="POST" id="assignmentForm">
@@ -92,7 +90,6 @@ $result = $conn->query($sql);
         </form>
     </div>
 
-    <!-- Assignment List Table -->
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
