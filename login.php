@@ -38,28 +38,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8" />
     <title>Login - Student Portal</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
     <div class="container">
         <h2>Login</h2>
         <?php if ($message) { echo "<p class='message'>$message</p>"; } ?>
         <form method="POST" action="login.php" id="loginForm">
-            <label>Email</label><br />
-            <input type="email" name="email" required /><br />
-            
-            <label>Password</label><br />
-            <input type="password" name="password" required /><br />
-            
+
+            <label>Email</label>
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Enter your email" required />
+                <i class="fas fa-envelope icon"></i>
+            </div>
+
+            <label>Password</label>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Enter your password" required />
+                <i class="fas fa-lock icon"></i>
+            </div>
+
             <button type="submit">Login</button>
         </form>
         <p>Don't have an account? <a href="register.php">Register here</a>.</p>
     </div>
 
-    <!-- JavaScript Validation -->
     <script>
     document.getElementById('loginForm').addEventListener('submit', function (e) {
         const email = document.querySelector('input[name="email"]').value.trim();

@@ -1,4 +1,4 @@
-<?php
+<?php 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
@@ -67,30 +67,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8" />
     <title>Register - Student Portal</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
     <div class="container">
         <h2>Register</h2>
         <?php if ($message) { echo "<p class='message'>$message</p>"; } ?>
         <form method="POST" action="register.php" id="registerForm">
-            <label>Username</label><br />
-            <input type="text" name="username" required /><br />
             
-            <label>Email</label><br />
-            <input type="email" name="email" required /><br />
-            
-            <label>Password</label><br />
-            <input type="password" name="password" required /><br />
-            
-            <label>Confirm Password</label><br />
-            <input type="password" name="confirm_password" required /><br />
-            
+            <label>Username</label>
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Enter your username" required />
+                <i class="fas fa-user icon"></i>
+            </div>
+
+            <label>Email</label>
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Enter your email" required />
+                <i class="fas fa-envelope icon"></i>
+            </div>
+
+            <label>Password</label>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Enter your password" required />
+                <i class="fas fa-lock icon"></i>
+            </div>
+
+            <label>Confirm Password</label>
+            <div class="input-group">
+                <input type="password" name="confirm_password" placeholder="Confirm your password" required />
+                <i class="fas fa-lock icon"></i>
+            </div>
+
             <button type="submit">Register</button>
         </form>
         <p>Already have an account? <a href="login.php">Login here</a>.</p>
     </div>
 
-    <!-- JavaScript Validation -->
     <script>
     document.getElementById('registerForm').addEventListener('submit', function (e) {
         const username = document.querySelector('input[name="username"]').value.trim();
